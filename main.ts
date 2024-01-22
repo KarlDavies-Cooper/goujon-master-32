@@ -1,17 +1,16 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     MainCharacter.setVelocity(0, JumpPower)
-    pause(500)
+    pause(200)
     MainCharacter.setVelocity(0, Gravity)
-    pause(425)
-    MainCharacter.setVelocity(0, 0)
 })
 let MainCharacter: Sprite = null
 let Gravity = 0
 let JumpPower = 0
 game.splash("\"Goujon Master 32\"")
 let Speed = 80
-JumpPower = -50
-Gravity = 60
+let PixelsToMeters = 30
+JumpPower = -200
+Gravity = 9.81 * PixelsToMeters
 MainCharacter = sprites.create(assets.image`Main Character`, SpriteKind.Player)
 scene.setBackgroundImage(img`
     ................................................................................................................................................................
