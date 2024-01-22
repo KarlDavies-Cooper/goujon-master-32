@@ -1,5 +1,18 @@
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    MainCharacter.setVelocity(0, JumpPower)
+    pause(500)
+    MainCharacter.setVelocity(0, Gravity)
+    pause(425)
+    MainCharacter.setVelocity(0, 0)
+})
+let MainCharacter: Sprite = null
+let Gravity = 0
+let JumpPower = 0
 game.splash("\"Goujon Master 32\"")
-let MainCharacter = sprites.create(assets.image`Main Character`, SpriteKind.Player)
+let Speed = 80
+JumpPower = -50
+Gravity = 60
+MainCharacter = sprites.create(assets.image`Main Character`, SpriteKind.Player)
 scene.setBackgroundImage(img`
     ................................................................................................................................................................
     ................................................................................................................................................................
@@ -122,5 +135,15 @@ scene.setBackgroundImage(img`
     ................................................................................................................................................................
     ................................................................................................................................................................
     `)
-controller.moveSprite(MainCharacter)
+controller.moveSprite(MainCharacter, Speed, 0)
 MainCharacter.setStayInScreen(true)
+game.setGameOverMessage(false, "\"YOU LOSE\"")
+let Cash = 3
+game.setGameOverEffect(false, effects.splatter)
+MainCharacter.setPosition(4, 95)
+forever(function () {
+    if (Cash == 0) {
+        game.gameOver(false)
+    }
+    info.setLife(Cash)
+})
